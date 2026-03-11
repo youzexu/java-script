@@ -219,3 +219,22 @@ removeAttribute()，这个方法用于彻底删除元素的特性。调用这个
 5. 创建元素
 使用 document.createElement()方法可以创建新元素。这个方法只接受一个参数，即要创建元素的标签名。
 要把新元素添加到文档树，可以使用 appendChild()、insertBefore()或 replaceChild()方法
+例如，要想取得前面
+<ul>元素中包含的所有<li>元素，可以使用下列代码。
+var ul = document.getElementById("myList"); 
+var items = ul.getElementsByTagName("li");
+
+11.3.5 自定义数据属性
+HTML5 规定可以为元素添加非标准的属性，但要添加前缀 data-，目的是为元素提供与渲染无关的
+信息，或者提供语义信息。
+
+第 12 章 
+可以通过下列代码来确定浏览器是否支持这些 DOM 模块。
+var supportsDOM2Core = document.implementation.hasFeature("Core", "2.0"); 
+var supportsDOM3Core = document.implementation.hasFeature("Core", "3.0"); 
+var supportsDOM2HTML = document.implementation.hasFeature("HTML", "2.0"); 
+var supportsDOM2Views = document.implementation.hasFeature("Views", "2.0"); 
+var supportsDOM2XML = document.implementation.hasFeature("XML", "2.0");
+
+说起来，importNode()方法与 Element 的 cloneNode()方法非常相似，它接受两个参数：要复制的节点和一个表示是否复制子节点的布尔值。返回的结果是原来节点的副本，但能够在当前文档中使用
+createDocumentType()和 createDocument()。前者用于创建一个新的 DocumentType节点，接受 3 个参数：文档类型名称、publicId、systemId。
