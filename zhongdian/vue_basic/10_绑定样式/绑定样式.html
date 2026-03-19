@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初始vue</title>
+    <style>
+        .basic {
+            width: 400px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div class="basic" :class="mood" @click="changeMode">{{name}}</div>
+        <div class="basic" :class="classarr">{{name}}</div>
+        <div class="basic" :class="classobj">{{name}}</div>
+        <div class="basic" :style="styleobj">{{name}}</div>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    new Vue({
+        el: '#root',
+        data: {
+            name: '尚硅谷',
+            mood: 'nomal',
+            classarr: ['a1', 'a2', 'a3'],
+            classobj: {
+                a1: false,
+                a2: false,
+            },
+            styleobj: {
+                fontSize: '30px',
+                color:'red',
+                backgroundColor:'orange'
+            }
+        },
+        methods: {
+            changeMode() {
+                this.mood = 'happy'
+            }
+        }
+    })
+
+
+</script>
+
+</html>

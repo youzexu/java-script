@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初始vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>今天天气很{{info}}</h2>
+        <button @click="changWeather">点击切换天气</button>
+        <hr>
+        <h3>a的值是{{number.a}}</h3>
+        <button @click="number.a++">点我让a+1</button>
+        <hr>
+        <h3>b的值是{{number.b}}</h3>
+        <button @click="number.b++">点我让b+1</button>
+        <button @click="number ={a:666,b:888}">点我彻底替换number</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        new Vue({
+            el: '#root',
+            data: {
+                isHot: true,
+                number: {
+                    a: 1,
+                    b: 2
+                }
+            },
+            computed: {
+                info() {
+                    return this.isHot ? '热' : '冷';
+                }
+            },
+            methods: {
+                changWeather() {
+                    this.isHot = !this.isHot;
+                }
+            },
+            watch: {
+                isHot: {
+                    handler() {
+                        console.log('isHot被修改了')
+                    }
+                },
+                // 'number.a': {
+                //     handler() {
+                //         console.log('a被修改了')
+                //     }
+                // }
+                number: {
+                    deep: true,
+                    handler() {
+                        console.log('name被修改了')
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
