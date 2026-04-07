@@ -1,0 +1,88 @@
+@color: red;
+@w: 20px;
+@h: 10px;
+@warning: yellow;
+@success: green;
+@primary: blue;
+
+//固定值
+.radius() {
+    border-radius: 5px;
+}
+
+//margin: 10px;
+.margin() {
+    margin: 10px;
+}
+
+//2.可变的值
+.radius(@a) {
+    border-radius: @a ;
+}
+
+.padding(@d) {
+    padding: @d ;
+}
+
+
+#box {
+    min-height: @w*10;
+    background-color: @warning;
+    color: @success;
+
+    .p1 {
+        border: 2px solid @primary ;
+        padding: (3*23px);
+
+        .font {
+            color: #cccccc;
+            font-size: 20px;
+
+            &:hover {
+                color: @color;
+            }
+        }
+    }
+
+    .p2 {
+        color: @primary;
+    }
+}
+
+.c1 {
+    .margin();
+    padding: @w;
+    border: 1px solid @color;
+    .radius()
+}
+
+//混合
+.c2 {
+    border: 1px solid @color;
+    .margin();
+    .radius(10px);
+    .padding(10px)
+}
+
+//继承，all属性会继承整个目标的样式，包括子级
+#c3 {
+    &:extend(#box .p1 .font);
+}
+
+//导入
+@import "my2.less";
+@import "my2.css";
+
+//循环方法
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+    .column-@{i} {
+        width: (@i * 100% / @n);
+        height: 10px;
+        background: darken(@color, @i*2%)
+    }
+
+    .generate-columns(@n, (@i + 1));
+}
+
+.generate-columns(10);
